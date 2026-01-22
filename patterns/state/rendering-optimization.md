@@ -13,16 +13,14 @@ Vue 템플릿의 가독성과 렌더링 성능을 확보하기 위해 리스트 
 ## 2. 해결 방안 (After): Data Mapping Pattern
 API로부터 받은 원본 데이터(Raw Data)를 뷰 모델(View Model)에 최적화된 형태로 변환한 뒤 템플릿에 전달합니다.
 
-- Computed 대신 Mapping을 쓰는 이유
+-> Computed 대신 Mapping을 쓰는 이유
 
 단순 필터링이 아니라 각 리스트 아이템별로 복잡한 가공이 필요한 경우, computed보다 map을 통한 전처리가 데이터 구조를 파악하기에 더 직관적입니다.
 
 ### 핵심 로직
-1.Raw Data 수신: API 통신으로 원본 배열 획득.
-
-Transform: Array.prototype.map()을 활용하여 UI 전용 필드(variant, formattedDate 등) 주입.
-
-2.Binding: 템플릿에서는 계산 없이 필드값만 바인딩.
+1. **Raw Data 수신:** API 통신으로 원본 배열 획득.
+2. **Transform:** Array.prototype.map()을 활용하여 UI 전용 필드(variant, formattedDate 등) 주입.
+3. **Binding:** 템플릿에서는 계산 없이 필드값만 바인딩.
 
 ---
 
