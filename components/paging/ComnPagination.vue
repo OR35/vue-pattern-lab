@@ -141,6 +141,12 @@ const movePage = page => {
   } else {
     pageNo = Number(page);
   }
+  // 스크롤 최상단 이동
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth', // 부드럽게 'smooth', 즉시 'auto'
+  });
   emit('handleClickPageMove', pageNo);
 };
 
