@@ -43,3 +43,11 @@ watch(
   },
 );
 </script>
+<style scoped>
+:deep(.cm-editor) {
+  height: 100%;
+}
+:deep(.cm-scroller) {
+  overflow: auto;
+}
+</style>
