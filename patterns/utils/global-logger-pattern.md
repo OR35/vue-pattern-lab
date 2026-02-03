@@ -107,4 +107,8 @@ module.exports = {
 };
 ```
 
-> **관련 코드:** [Logger Utils](../../components/utils/logger.js)
+## 참고 자료
+
+| 구분 | 항목 | 경로 |
+| :--- | :--- | :--- |
+| **Logic** | 개발환경에 따른 Log 설정 | [Logger Utils](../../components/utils/logger.js) |

@@ -127,8 +127,10 @@ const goToDetail = (id) => {
 
 ---
 
-> **리팩토링 사례 보기:** [검색 조건 중복 로직 추상화](../../dev-notes/state/search-condition-refactoring.md)
+## 참고 자료
 
-> **참고 코드**
-- [SearchStore](../../components/utils/SearchStore.js)
-- [SearchRestore](../../components/utils/SearchRestore.js)
+| 구분 | 항목 | 경로 |
+| :--- | :--- | :--- |
+| **History** | 리팩토링 사례 | [검색 조건 중복 로직 추상화](../../dev-notes/state/search-condition-refactoring.md) |
+| **Logic** | 상태 관리 저장소 (Store) | [SearchStore.js](../../components/utils/SearchStore.js) |
+| **Logic** | 캡슐화 Composable | [SearchRestore.js](../../components/utils/SearchRestore.js) |

@@ -50,4 +50,8 @@ const resetAgentForm = () => {
 
 ---
 
-> **리팩토링 사례 보기:** [반복적인 Form 초기화 로직의 구조화](../../dev-notes/form/agentform-refactoring-log.md)
+## 참고 자료
+
+| 구분 | 항목 | 경로 |
+| :--- | :--- | :--- |
+| **History** | 리팩토링 사례 | [반복적인 Form 초기화 로직의 구조화](../../dev-notes/form/agentform-refactoring-log.md) |

@@ -1,4 +1,4 @@
-# ComnPagination
+# [ComnPagination](./ComnPagination.vue)
 
 공통 페이징 컴포넌트
 

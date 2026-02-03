@@ -61,4 +61,8 @@ const fetchData = async () => {
 
 ---
 
-> **리팩토링 사례 보기:** [템플릿 내 함수 호출 최적화](../../dev-notes/state/rendering-optimization-log.md)
+## 참고 자료
+
+| 구분 | 항목 | 경로 |
+| :--- | :--- | :--- |
+| **History** | 리팩토링 사례 | [템플릿 내 함수 호출 최적화](../../dev-notes/state/rendering-optimization-log.md) |
