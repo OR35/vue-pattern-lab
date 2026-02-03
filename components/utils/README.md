@@ -78,7 +78,9 @@ const handleResponse = (data) => {
 1. 목록 페이지: 상태 복원
 
 ```JavaScript
-const { restore } = useSearchRestore('SENSOR_LIST');
+const searchStore = useSearchStore();
+const MENU_KEY = 'OPTIMIZATION';
+const { restore } = useSearchRestore(MENU_KEY);
 
 onMounted(async () => {
   // 복구 로직 실행
