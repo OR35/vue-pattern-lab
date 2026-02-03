@@ -128,3 +128,7 @@ const goToDetail = (id) => {
 ---
 
 > **리팩토링 사례 보기:** [검색 조건 중복 로직 추상화](../../dev-notes/state/search-condition-refactoring.md)
+
+> **참고 코드**
+- [SearchStore](../../components/utils/SearchStore.js)
+- [SearchRestore](../../components/utils/SearchRestore.js)
