@@ -53,7 +53,7 @@ onMounted(async () => {
   await restore({
     pageInfo,
     searchInfoRef,
-    extraFields: ['displayRegrNm', 'optimizationStatus'],
+    extraFields: ['optimizationStatus'],
   });
 
   getCodeList();

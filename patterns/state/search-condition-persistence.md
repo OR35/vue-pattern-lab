@@ -71,9 +71,17 @@ export function useSearchRestore(MENU_KEY) {
     await nextTick();
     if (searchInfoRef.value) {
       if (saved.searchInfo) Object.assign(searchInfoRef.value.searchInfo, saved.searchInfo);
-      if (saved.displayRegrNm) searchInfoRef.value.displayRegrNm = saved.displayRegrNm;
-    }
 
+      Object.keys(saved).forEach(key => {
+        if (key !== 'pageInfo' && key !== 'searchInfo') {
+          const target = searchInfoRef.value[key];
+          // 자식에게 해당 키가 있고, 그게 함수가 아닐 때만 값을 대입
+          if (target !== undefined && typeof target !== 'function') {
+            searchInfoRef.value[key] = saved[key];
+          }
+        }
+      });
+    }
     searchStore.resetCondition(MENU_KEY); // 복구 후 초기화
     return true;
   };
@@ -97,7 +105,7 @@ onMounted(async () => {
   await restore({
     pageInfo,
     searchInfoRef,
-    extraFields: ['displayRegrNm', 'optimizationStatus'],
+    extraFields: ['optimizationStatus'],
   });
 
   fetchDataList(); // 복구된 정보로 목록 조회
@@ -111,12 +119,14 @@ onMounted(async () => {
 const goToDetail = (id) => {
   const savePayload = {
     searchInfo: { ...searchInfoRef.value.searchInfo },
-    pageInfo: { ...pageInfo.value }, // 현재 페이지 및 사이즈 포함
     displayRegrNm: searchInfoRef.value.displayRegrNm,
-    optimizationStatus: pageInfo.value.optimizationStatus,
+    pageInfo: {
+      currentPage: pageInfo.value.currentPage,
+      itemsPerPage: pageInfo.value.itemsPerPage,
+      optimizationStatus: pageInfo.value.optimizationStatus,
+    },
   };
-
-  searchStore.setCondition('SENSOR_LIST', savePayload);
+  searchStore.setCondition(MENU_KEY, savePayload);
   router.push({ name: 'DetailPage', query: { id } });
 };
 ```
@@ -134,5 +144,5 @@ const goToDetail = (id) => {
 | 구분 | 항목 | 경로 |
 | :--- | :--- | :--- |
 | **History** | 리팩토링 사례 | [검색 조건 중복 로직 추상화](../../dev-notes/state/search-condition-refactoring.md) |
-| **Logic** | 상태 관리 저장소 (Store) | [SearchStore.js](../../components/utils/SearchStore.js) |
-| **Logic** | 캡슐화 Composable | [SearchRestore.js](../../components/utils/SearchRestore.js) |
+| **Logic** | 상태 관리 저장소 (Store) | [SearchStore.js](../../src/components/utils/SearchStore.js) |
+| **Logic** | 캡슐화 Composable | [SearchRestore.js](../../src/components/utils/SearchRestore.js) |

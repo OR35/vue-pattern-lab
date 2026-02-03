@@ -111,4 +111,4 @@ module.exports = {
 
 | 구분 | 항목 | 경로 |
 | :--- | :--- | :--- |
-| **Logic** | 개발환경에 따른 Log 설정 | [Logger Utils](../../components/utils/logger.js) |
+| **Logic** | 개발환경에 따른 Log 설정 | [Logger Utils](../../src/components/utils/logger.js) |

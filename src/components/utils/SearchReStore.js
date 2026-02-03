@@ -12,7 +12,7 @@ import { useSearchStore } from './SearchStore';
  * await restore({
  * pageInfo,           // 복구될 페이지 정보 ref
  * searchInfoRef,      // 자식 검색 폼 ref
- * extraFields: ['displayRegrNm'] // pageInfo에 담긴 추가 필드명 배열
+ * extraFields: ['statusCd'] // pageInfo에 담긴 추가 필드명 배열
  * });
  * });
  */
@@ -39,9 +39,17 @@ export function useSearchRestore(MENU_KEY) {
         await nextTick();
         if (searchInfoRef.value) {
             if (saved.searchInfo) Object.assign(searchInfoRef.value.searchInfo, saved.searchInfo);
-            if (saved.displayRegrNm) searchInfoRef.value.displayRegrNm = saved.displayRegrNm;
-        }
 
+            Object.keys(saved).forEach(key => {
+                if (key !== 'pageInfo' && key !== 'searchInfo') {
+                    const target = searchInfoRef.value[key];
+                    // 자식에게 해당 키가 있고, 그게 함수가 아닐 때만 값을 대입
+                    if (target !== undefined && typeof target !== 'function') {
+                        searchInfoRef.value[key] = saved[key];
+                    }
+                }
+            });
+        }
         searchStore.resetCondition(MENU_KEY);
         return true;
     };

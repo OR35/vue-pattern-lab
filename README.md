@@ -14,6 +14,8 @@ Vue 기반 프론트엔드 개발 패턴을 정리한 개인 아카이브입니�
 
 - components/
   - 바로 사용 가능한 컴포넌트
+- constants/
+  - 상수 정의
 - patterns/
   - 재사용 가능한 UI / 상태 / API / 인증 패턴 정리
 - examples/

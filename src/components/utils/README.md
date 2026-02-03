@@ -87,7 +87,7 @@ onMounted(async () => {
   await restore({
     pageInfo,
     searchInfoRef,
-    extraFields: ['displayRegrNm', 'optimizationStatus'],
+    extraFields: ['optimizationStatus'],
   });
 
   fetchDataList(); // 복구된 정보로 목록 조회
@@ -100,12 +100,14 @@ onMounted(async () => {
 const goToDetail = (id) => {
   const savePayload = {
     searchInfo: { ...searchInfoRef.value.searchInfo },
-    pageInfo: { ...pageInfo.value }, // 현재 페이지 및 사이즈 포함
     displayRegrNm: searchInfoRef.value.displayRegrNm,
-    optimizationStatus: pageInfo.value.optimizationStatus,
+    pageInfo: {
+      currentPage: pageInfo.value.currentPage,
+      itemsPerPage: pageInfo.value.itemsPerPage,
+      optimizationStatus: pageInfo.value.optimizationStatus,
+    },
   };
-
-  searchStore.setCondition('SENSOR_LIST', savePayload);
+  searchStore.setCondition(MENU_KEY, savePayload);
   router.push({ name: 'DetailPage', query: { id } });
 };
 ```
