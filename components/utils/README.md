@@ -14,8 +14,6 @@ Vue Composition API 환경에서
 - 필드 수가 늘어나도 v-for + if 지옥 방지
 - computed 기반으로 반응형 필터링 유지
 
----
-
 ### Usage
 
 ```JavaScript
