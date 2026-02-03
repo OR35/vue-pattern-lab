@@ -1,7 +1,7 @@
 # Popup
 
 
-## DeleteComfirmPopup
+## [DeleteComfirmPopup](./DeleteConfirmPopup.vue)
 
 삭제와 같이 **되돌릴 수 없는 액션을 수행하기 전 사용자 확인을 받기 위한 공통 팝업 컴포넌트**입니다.  
 삭제 사유 입력을 포함하며, 화면별 로직과 분리된 형태로 설계되었습니다.
