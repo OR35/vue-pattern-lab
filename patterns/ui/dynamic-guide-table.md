@@ -78,4 +78,4 @@ const guideData = computed(() => {
 
 | 구분 | 항목 | 경로 |
 | :--- | :--- | :--- |
-| **Logic** | 가이드 데이터 상수 | [SearchStore.js](../../src/constants/mailGuide.js) |
+| **Logic** | 가이드 데이터 상수 | [MailGuide.js](../../src/constants/mailGuide.js) |
