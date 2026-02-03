@@ -8,9 +8,7 @@ Vue Composition API 환경에서
 목록 화면에서 반복되는 검색 로직을 줄이고,  
 필터 조건이 늘어나도 코드 복잡도가 증가하지 않도록 설계되었습니다.
 
----
-
-### 🎯 Purpose
+### Purpose
 
 - 목록 페이지의 검색 / 필터 로직 공통화
 - 필드 수가 늘어나도 v-for + if 지옥 방지
@@ -20,7 +18,7 @@ Vue Composition API 환경에서
 
 ### Usage
 
-``` vue
+```JavaScript
 
 -- 단일
 const filteredTrainDatasets = filterByKeyword(datasets, datasetKeyword, 'datasetNm');
@@ -32,12 +30,13 @@ const filteredAgents = filterByKeywords(toRef(props, 'agents'), {
   agentTypeCd: keywordType,
 });
 ```
+---
 
 ## UseCodeUtils
 
 ### Usage
 
-``` vue
+```JavaScript
 
 const { getCodeNm } = useCodeUtils();
 
@@ -56,4 +55,58 @@ const displayNames = computed(() => {
 });
 
 ```
+---
 
+## Logger
+
+### Usage
+
+```JavaScript
+const handleResponse = (data) => {
+  logger.log('API Response 수신');
+  logger.debug('Dataset 상세 정보', data);
+};
+```
+
+```HTML
+<button @click="$logger.log('사용자 클릭 이벤트')">로그 남기기</button>
+```
+---
+
+## SearchStore & SearchReStore
+
+### Usage
+
+1. 목록 페이지: 상태 복원
+
+```JavaScript
+const { restore } = useSearchRestore('SENSOR_LIST');
+
+onMounted(async () => {
+  // 복구 로직 실행
+  await restore({
+    pageInfo,
+    searchInfoRef,
+    extraFields: ['displayRegrNm', 'optimizationStatus'],
+  });
+
+  fetchDataList(); // 복구된 정보로 목록 조회
+});
+```
+
+2. 상세 이동: 상태 저장
+
+```JavaScript
+const goToDetail = (id) => {
+  const savePayload = {
+    searchInfo: { ...searchInfoRef.value.searchInfo },
+    pageInfo: { ...pageInfo.value }, // 현재 페이지 및 사이즈 포함
+    displayRegrNm: searchInfoRef.value.displayRegrNm,
+    optimizationStatus: pageInfo.value.optimizationStatus,
+  };
+
+  searchStore.setCondition('SENSOR_LIST', savePayload);
+  router.push({ name: 'DetailPage', query: { id } });
+};
+```
+---
