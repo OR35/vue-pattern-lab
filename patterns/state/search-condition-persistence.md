@@ -88,7 +88,9 @@ export function useSearchRestore(MENU_KEY) {
 onMounted 시점에 restore 함수를 호출합니다.
 
 ```JavaScript
-const { restore } = useSearchRestore('SENSOR_LIST');
+const searchStore = useSearchStore();
+const MENU_KEY = 'OPTIMIZATION';
+const { restore } = useSearchRestore(MENU_KEY);
 
 onMounted(async () => {
   // 복구 로직 실행
